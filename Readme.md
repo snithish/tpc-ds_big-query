@@ -1,5 +1,6 @@
 # TPC - DS - Big Query
 
+**Credits:** Most scripts have been referenced from [Fivetran DW Benchmark](https://github.com/fivetran/benchmark) and have been adapted to suit our particular usecase.
 
 ## Steps:
 
