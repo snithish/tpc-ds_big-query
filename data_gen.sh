@@ -21,7 +21,7 @@ gsutil rb -f gs://$GCS_BUCKET
 gsutil mb -c standard -l us-east1 gs://$GCS_BUCKET
 
 # Mount GCS bucket to VM
-gcsfuse $GCS_BUCKET $GCS_BUCKET
+gcsfuse $GCS_BUCKET $DATA_DIR
 
 gen() {
   CPU=$1
