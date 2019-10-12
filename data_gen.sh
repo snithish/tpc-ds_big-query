@@ -3,13 +3,30 @@
 
 # Usage: ./data_gen.sh $CPU $SCALE
 
-DATA_DIR=~/tpc-ds-data/scale-$2
+PROJECT=scale_$2
+
+GCS_BUCKET=data_$PROJECT
+DATA_DIR=~/$GCS_BUCKET
+
+# Delete existing data dir
+rm rf $DATA_DIR
+
+# Create mount point
+mkdir $DATA_DIR
+
+# Remove existing bucket
+gsutil rb -f gs://$GCS_BUCKET
+
+# Create bucket
+gsutil mb -c standard -l us-east1 gs://$GCS_BUCKET
+
+# Mount GCS bucket to VM
+gcsfuse $GCS_BUCKET $GCS_BUCKET
+
 gen() {
   CPU=$1
   SCALE=$2
   SEED=2019
-  rm -rf $DATA_DIR
-  mkdir $DATA_DIR
   seq 1 $CPU \
     | xargs -t -P$CPU -I__ \
         ./dsdgen \
@@ -23,7 +40,6 @@ gen() {
 }
 
 gen $1 $2
-
 
 # Rename to help with 'wildcard' loading
 cd $DATA_DIR

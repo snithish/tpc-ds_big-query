@@ -6,22 +6,7 @@
 PROJECT=scale_$1
 
 GCS_BUCKET=data_$PROJECT
-# Delete existing data dir
-rm rf ~/$GCS_BUCKET
 
-# Create mount point
-mkdir ~/$GCS_BUCKET
-
-# Remove existing bucket
-gsutil rb -f gs://$GCS_BUCKET
-
-# Create bucket
-gsutil mb -c standard -l us-east1 gs://$GCS_BUCKET
-
-# Mount GCS bucket to VM
-gcsfuse $GCS_BUCKET $GCS_BUCKET
-
- # underscore to match Big Query Convention
 GS_BASE=gs://$GCS_BUCKET
 
 RED='\033[0;31m'
