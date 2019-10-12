@@ -9,7 +9,7 @@ GCS_BUCKET=data_$PROJECT
 DATA_DIR=~/$GCS_BUCKET
 
 # Delete existing data dir
-rm rf $DATA_DIR
+rm -rf $DATA_DIR
 
 # Create mount point
 mkdir $DATA_DIR
