@@ -20,4 +20,4 @@ sudo usermod -a -G fuse $USER
 mkdir ~/tpc-ds-data
 
 # Mount GCS bucket to VM
-gcsfuse gs://dw-tpc-ds-data ~/tpc-ds-data
+gcsfuse dw-tpc-ds-data ~/tpc-ds-data
