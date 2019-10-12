@@ -15,9 +15,3 @@ sudo apt-get update
 sudo apt-get install gcsfuse
 
 sudo usermod -a -G fuse $USER
-
-# Create mount point
-mkdir ~/tpc-ds-data
-
-# Mount GCS bucket to VM
-gcsfuse dw-tpc-ds-data ~/tpc-ds-data
