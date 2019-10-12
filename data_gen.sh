@@ -3,11 +3,11 @@
 
 # Usage: ./data_gen.sh $CPU $SCALE
 
+DATA_DIR=~/tpc-ds-data/scale-$2
 gen() {
   CPU=$1
   SCALE=$2
   SEED=2019
-  DATA_DIR=~/tpc-ds-data/scale-$2
   rm -rf $DATA_DIR
   mkdir $DATA_DIR
   seq 1 $CPU \
@@ -23,3 +23,9 @@ gen() {
 }
 
 gen $1 $2
+
+
+# Rename to help with 'wildcard' loading
+cd $DATA_DIR
+for f in customer_[0-9]*_*; do mv $f prefix_fix_${f#file_[0-9]*_}; done
+for f in store_[0-9]*_*; do mv $f prefix_fix_${f#file_[0-9]*_}; done
